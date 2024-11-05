@@ -151,7 +151,8 @@ let rec expression ({ e_desc = desc } as e) =
       { e with e_desc = Etuple(List.map expression e_list) }
   | Econstr1 _ | Ematch _ | Eseq _ | Elet _ | Eperiod _ | Eblock _ | Epresent _
     -> assert false
-    
+  | _ -> assert false
+
 let rec equation return ({ eq_desc = desc } as eq) =
   match desc with
   | EQeq(p, e) ->

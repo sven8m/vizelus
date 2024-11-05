@@ -16,6 +16,9 @@ install: ## Install as an opam development package pinned to this directory
 uninstall: ## Remove opam pin
 	opam pin remove zelus zelus-gtk
 
+reinstall:
+	opam reinstall zelus zelus-gtk
+
 clean: ## Clean the entire project
 	dune clean
 

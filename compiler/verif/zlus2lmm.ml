@@ -207,7 +207,7 @@ let rec expression ck { e_desc = desc; e_loc = loc } =
   | Etuple(e_list) -> Ltuple(List.map (expression ck) e_list)
   | Ematch _ | Eseq _ | Elet _
   | Eperiod _ | Eblock _ | Epresent _ -> assert false
-
+  | _ -> assert false
 
 (* [split s_set ({ eqs } as return) = name_to_exp, return'] splits eqs into *)
 (* two complementary sets of equations *)
@@ -295,7 +295,7 @@ let let_expression ck res n_output ({ e_desc = desc } as e) =
      let e = expression ck e in
      with_eq empty (eq_make Def n_output e ck)
 
-let kind = function | S | AS | A | AD -> A | D -> D | C -> assert false
+let kind = function | S | AS | A | AD -> A | D -> D | C -> assert false | _ -> assert false
 
 (* translation of a type declaration *)
 let typedecl loc n params td =

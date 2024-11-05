@@ -98,6 +98,26 @@ let with_copy = ref false
 let use_rif = ref false
 let build_deps = ref false
 
+let do_visualization = ref false
+let do_viz_only_fun = ref ""
+let set_viz_only_fun s = do_viz_only_fun := s
+
+let do_aut_transition = ref false
+let do_viz_text = ref false
+let do_viz_text_if = ref false
+let do_viz_text_scond = ref false
+let do_viz_no_connect = ref false
+let do_viz_inline_aut = ref false
+let do_viz_true_no_connect = ref false
+let viz_no_init = ref false
+
+let do_viz2 = ref false
+let do_viz2_less = ref false
+let do_viz2_no_hyper_present = ref false
+let do_viz2_true_no_hyper_present = ref false
+let do_viz2_show_init = ref false
+let do_viz2_no_const = ref false
+
 let lmm_nodes = ref S.empty
 let set_lmm_nodes (n: string) =
   lmm_nodes := S.add n !lmm_nodes

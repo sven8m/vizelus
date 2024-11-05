@@ -14,12 +14,12 @@
   (public_name zelus.zlcompilerlibs)
   (wrapped false)
   (modules :standard \ zeluc)
-  (libraries menhirLib))
+  (libraries menhirLib kplacement kgraph kdata interLib))
 
 (executable
   (name zeluc)
   (modes (byte exe))
-  (libraries unix menhirLib zlcompilerlibs)
+  (libraries unix menhirLib zlcompilerlibs kplacement kgraph kdata	interLib)
   (modules zeluc)
   (promote (until-clean)))
 

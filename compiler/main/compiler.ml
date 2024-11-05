@@ -146,6 +146,29 @@ let compile modname filename =
     then step "Initialization check done"
 	(Initialization.implementation_list info_ff) impl_list
     else impl_list in
+  (*chouuuuu*)
+  if !do_visualization then begin
+	  let ig = Pres.implementation_list impl_list filename in
+	  Format.printf "has done presentation@.";
+	  let g = Intermediate_to_kgraph.translate_graph ig in 
+	  Format.printf "has done intermediate@.";
+	  let g_name = filename ^".kgx" in
+	  let gr = open_out g_name in
+	  let ff = Format.formatter_of_out_channel gr in
+	  Kgraph_printer.graph_to_kgx ff g;
+	  Format.printf "has printed@.";
+  end;
+  if !do_viz2 then begin
+	 let ig = Pres_abs.implementation_list impl_list filename in
+	  Format.printf "has done presentation@.";
+	  let g = Intermediate_to_kgraph.translate_graph ig in 
+	  Format.printf "has done intermediate@.";
+	  let g_name = filename ^".kgx" in
+	  let gr = open_out g_name in
+	  let ff = Format.formatter_of_out_channel gr in
+	  Kgraph_printer.graph_to_kgx ff g;
+	  Format.printf "has printed@.";
+end;
   if not !typeonly then
     begin
       (* continue if [typeonly = false] *)

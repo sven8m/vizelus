@@ -95,6 +95,25 @@ and doc_zsign = "\t Use the sign function for the zero-crossing argument"
 and doc_with_copy = "\t Add of a copy method for the state"
 and doc_rif = "\t Use RIF format over stdin and stdout to communicate I/O to the node being simulated"
 and doc_deps = "\t Recursively compile dependencies"
+
+and doc_viz = "\t visualization"
+and doc_viz_fun = "\t visualization only for the given function"
+and doc_aut_trans = "\t block representation for automata transitions"
+and doc_text = "\t textual when simple expressions"
+and doc_text_if = "\t textual when simple expressions, also for if then else"
+and doc_text_scond = "\t textual representation for conditions"
+and doc_no_connect = "\t don't connect variables from other blocks"
+and doc_inline_aut = "\t inline automata transitions"
+and doc_true_no_connect = "\t don't connect variables at all"
+and doc_viz_no_init = "\t don't show init statements"
+
+and doc_viz2 = "\t visualization with abstraction"
+and doc_viz2_less = "\t try not to show block nodes"
+and doc_viz2_no_hyper_present = "\t no hyper edge for present port"
+and doc_viz2_true_no_hyper_present = "\t strong no hyper edge for present port"
+and doc_viz2_show_init = "\t show the init equations"
+and doc_viz2_no_const = "\t do not show constant dependencies"
+
 let errmsg = "Options are:"
 
 let set_verbose () =
@@ -149,7 +168,26 @@ let main () =
           "-lmm", Arg.String set_lmm_nodes, doc_lmm;
           "-rif", Arg.Set use_rif, doc_rif;
           "-deps", Arg.Set build_deps, doc_deps;
-        ])
+
+          "-viz", Arg.Set do_visualization, doc_viz;
+		  "-viz-fun", Arg.String set_viz_only_fun, doc_viz_fun;
+
+		  "-aut-trans", Arg.Set do_aut_transition, doc_aut_trans;
+		  "-viz-text", Arg.Set do_viz_text, doc_text;
+		  "-viz-text-if", Arg.Set do_viz_text_if, doc_text_if;
+		  "-viz-text-scond", Arg.Set do_viz_text_scond, doc_text_scond;
+		  "-viz-noc", Arg.Set do_viz_no_connect, doc_no_connect;
+		  "-viz-inline-aut", Arg.Set do_viz_inline_aut, doc_inline_aut;
+		  "-viz-tnoc", Arg.Set do_viz_true_no_connect, doc_true_no_connect;
+		  "-viz-no-init", Arg.Set viz_no_init, doc_viz_no_init;
+
+		  "-viz2", Arg.Set do_viz2, doc_viz2;
+		  "-viz2-less", Arg.Set do_viz2_less, doc_viz2_less;
+		  "-viz2-nhp", Arg.Set do_viz2_no_hyper_present, doc_viz2_no_hyper_present;
+		  "-viz2-tnhp", Arg.Set do_viz2_true_no_hyper_present, doc_viz2_true_no_hyper_present;
+		  "-viz2-show-init", Arg.Set do_viz2_show_init, doc_viz2_show_init;
+		  "-viz2-no-const", Arg.Set do_viz2_no_const, doc_viz2_no_const;
+		])
       (fun filename -> if !build_deps then build filename else compile filename)
       errmsg;
     begin
